@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="../../Downloads/фцуп.tsx"/>
+ <layer id="5" name="floor" width="20" height="20" locked="1" opacity="0.67">
+  <data encoding="base64" compression="zlib">
+   eJwzZmBgMB7Fo3gUj+JRPIpJxAC6N0+x
+  </data>
+ </layer>
+ <layer id="6" name="exit" width="20" height="20" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAeVEPxKBgFo2AUjIJRAADb1wD3
+  </data>
+ </layer>
+ <layer id="3" name="walls" width="20" height="20" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJzTYyAMXgDxSyR+LCMDQyQSrkbCIBAIxHJALA/EQUSYH8tIhCISAC7z6qhsXicdzDNnQISlBYnmUdu/yGA7lc37QIJdK4HmrcKCkQEXHjvx2YULqOAxD59duIApmXaRA/DZhQ+Qmo8HGxgo9w+EvfOBmAeYbniBmA+IF+BQp0dFO0FmAQDScReK
+  </data>
+ </layer>
+ <layer id="4" name="collision" width="20" height="20" visible="0" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJybxshAEExjhGB0PjaMTZ4Y86kJcJlHrj0DaR4xYUkv95FrNqXmocvhS3vkmEcMGOzmkWsXIX2k5OPBBgbK/QNhL6H8gKyOmnYCANe2JcE=
+  </data>
+ </layer>
+</map>
