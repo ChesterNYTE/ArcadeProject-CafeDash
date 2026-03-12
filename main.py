@@ -10,7 +10,7 @@ class MainMenu(arcade.View):
         self.play_texture = arcade.load_texture("MainMenu.Play.png")
         self.quit_texture = arcade.load_texture("MainMenu.Ragequit.png")
 
-        bg_scale = 1000 / 100
+        bg_scale = 1000 / 60
         self.background_sprite = arcade.Sprite(self.background, scale=bg_scale, center_x=500, center_y=500)
 
         btn_scale = 10.0
@@ -64,21 +64,22 @@ class DifficultyView(arcade.View):
 
 
 class GameOverView(arcade.View):
-    def __init__(self):
+    def __init__(self, time_gameplay):
         super().__init__()
+        self.time_gameplay = time_gameplay
 
     def on_draw(self):
         self.clear()
-        arcade.draw_text("GAME OVER", 500, 500, arcade.color.RED, 60, anchor_x="center", anchor_y="center")
-        arcade.draw_text("Нажмите любую клавишу для выхода в меню", 500, 400, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text(f"Сыгранное время: {int(self.time_gameplay)} секунд", 500, 500, arcade.color.RED, 60, anchor_x="center", anchor_y="center")
+        arcade.draw_text("Нажмите клавишу ESC для выхода в меню", 500, 400, arcade.color.WHITE, 20, anchor_x="center")
 
     def on_key_press(self, key, modifiers):
-        menu_view = MainMenu()
-        self.window.show_view(menu_view)
+        if key == arcade.key.ESCAPE:
+            menu_view = MainMenu()
+            self.window.show_view(menu_view)
 
     def on_mouse_press(self, x, y, button, modifiers):
-        menu_view = MainMenu()
-        self.window.show_view(menu_view)
+        pass
 
 
 class Visitor:
@@ -156,6 +157,7 @@ class Chef:
 
 class Courier:
     def __init__(self, agility):
+        self.time_gameplay = 0
         self.stamina_bar_width = 300
         self.stamina_bar_height = 60
         self.stamina_bar_color = arcade.color.BLUEBERRY
@@ -284,6 +286,7 @@ class GameView(arcade.View):
             self.keys.discard("e")
 
     def on_update(self, delta_time):
+        self.courier.time_gameplay += delta_time
         if self.paused:
             return
         dx, dy = 0, 0
@@ -346,7 +349,7 @@ class GameView(arcade.View):
         self.chef.update(delta_time)
         self.all_sprites.update()
         if self.courier.agility <= 0:
-            game_over_view = GameOverView()
+            game_over_view = GameOverView(self.courier.time_gameplay)
             self.window.show_view(game_over_view)
 
     def setup(self):
